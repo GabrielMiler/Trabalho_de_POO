@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+int saldo = 0;
+void saque(){
+    int valor_retirado;
+    cout << "Quanto gostaria de sacar ?" << endl;
+    cin >> valor_retirado;
+    saldo = saldo - valor_retirado;
+}
+void deposito(){
+    int valor_depositado;
+    cout << "Quanto gostaria de depositar ?" << endl;
+    cin >> valor_depositado;
+    saldo = saldo + valor_depositado;
+}
+void mostrar(){
+    cout << "Saldo atual: " << saldo << endl;
+}
+int main(){
+    int *ptr = &saldo;
+    cout << "Qual será o saldo inicial ?" << endl;
+    cin >> saldo;
+    mostrar();
+    saque();
+    mostrar();
+    deposito();
+    mostrar();
+    return 0;
+}
