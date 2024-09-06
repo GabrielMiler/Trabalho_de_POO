@@ -133,11 +133,11 @@ void editar(int pos){
 
 void lerInfo(int i){
   cout << "Suas informações atuais: " << endl;
-  cout << "1. Nome" << nomes[i] << endl;
-  cout << "2. CPF" << cpfs[i] <<  endl;
-  cout << "3. Telefone" << telefones[i] << endl;
-  cout << "4. Endereço" << enderecos[i] << endl;
-  cout << "5. Saldo" << saldos[i] << endl;
+  cout << "1. Nome: " << nomes[i] << endl;
+  cout << "2. CPF: " << cpfs[i] <<  endl;
+  cout << "3. Telefone: " << telefones[i] << endl;
+  cout << "4. Endereço: " << enderecos[i] << endl;
+  cout << "5. Saldo: " << saldos[i] << endl;
   cout << "++++++++++++++++++++++" << endl;
 }
 
