@@ -1,29 +1,107 @@
 #include <iostream>
+#include <vector>
+#include <string>
 using namespace std;
-int saldo = 0;
-void saque(){
-    int valor_retirado;
-    cout << "Quanto gostaria de sacar ?" << endl;
-    cin >> valor_retirado;
-    saldo = saldo - valor_retirado;
+vector<string> cpfs;
+vector<string> nomes;
+vector<string> enderecos;
+vector<double> saldos;
+vector<string> telefones;
+int showMenu() {
+    int op;
+    cout << "1. Cadastro" << endl;
+    cout << "2. Acessar a conta" << endl;
+    cout << "3. Sair" << endl;
+    cin >> op;
+    return op;
 }
-void deposito(){
-    int valor_depositado;
-    cout << "Quanto gostaria de depositar ?" << endl;
-    cin >> valor_depositado;
-    saldo = saldo + valor_depositado;
+int selectOperacao() {
+    int op;
+    cout << "1. Saque" << endl;
+    cout << "2. Deposito" << endl;
+    cout << "3. Sair" << endl;
+    cin >> op;
+    return op;
 }
-void mostrar(){
-    cout << "Saldo atual: " << saldo << endl;
-}
-int main(){
-    int *ptr = &saldo;
-    cout << "Qual será o saldo inicial ?" << endl;
+void cadastrar() {
+    string nome, endereco, cpf, telefone;
+    double saldo;
+    cout << "Informações de cadastro" << endl;
+    cout << "Insira aqui seu nome: ";
+    cin.ignore();
+    getline(cin, nome);
+    nomes.push_back(nome);
+    cout << "Insira aqui seu cpf: " << endl;
+    cin >> cpf;
+    cpfs.push_back(cpf);
+    cout << "Insira aqui seu telefone: " << endl;
+    cin >> telefone;
+    telefones.push_back(telefone);
+    cout << "Insira aqui seu endereço: " << endl;
+    cin.ignore();
+    getline(cin, endereco);
+    enderecos.push_back(endereco);
+    cout << "Insira aqui o saldo inicial: " << endl;
     cin >> saldo;
-    mostrar();
-    saque();
-    mostrar();
-    deposito();
-    mostrar();
+    saldos.push_back(saldo);
+}
+int findAccountIndexByCpf(const string& cpf) {
+    for (size_t i = 0; i < cpfs.size(); ++i) {
+        if (cpfs[i] == cpf) {
+            return i;
+        }
+    }
+    return -1;
+}
+void acessarConta() {
+    string cpf;
+    cout << "Digite o CPF da conta que deseja acessar: ";
+    cin >> cpf;
+    int index = findAccountIndexByCpf(cpf);
+    if (index == -1) {
+        cout << "Conta não encontrada!" << endl;
+        return;
+    }
+    int operacao;
+    do {
+        operacao = selectOperacao();
+        if (operacao == 1) {
+            double valor_retirado;
+            cout << "Quanto gostaria de sacar? ";
+            cin >> valor_retirado;
+            if (valor_retirado > saldos[index]) {
+                cout << "Saldo insuficiente!" << endl;
+            } else {
+                saldos[index] -= valor_retirado;
+                cout << "Saque realizado com sucesso!" << endl;
+            }
+        } else if (operacao == 2) {
+            double valor_depositado;
+            cout << "Quanto gostaria de depositar? ";
+            cin >> valor_depositado;
+            saldos[index] += valor_depositado;
+            cout << "Depósito realizado com sucesso!" << endl;
+        } else if (operacao == 3) {
+            cout << "Saindo da conta." << endl;
+        } else {
+            cout << "Operação inválida!" << endl;
+        }
+        cout << "Saldo atual: " << saldos[index] << endl;
+    } while (operacao != 3);
+}
+int main() {
+    int menu;
+    while (true) {
+        menu = showMenu();
+        if (menu == 1) {
+            cadastrar();
+        } else if (menu == 2) {
+            acessarConta();
+        } else if (menu == 3) {
+            break;
+        } else {
+            cout << "Opção inválida!" << endl;
+        }
+    }
     return 0;
 }
