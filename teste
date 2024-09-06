@@ -142,7 +142,27 @@ void lerInfo(int i){
 }
 
 void deletarConta(int i){
+  
+  for(auto it = cpfs.size(); it > i ; it--){
+    if (i == cpfs.size() - 1){
+      cpfs.pop_back();
+      nomes.pop_back();
+      telefones.pop_back();
+      enderecos.pop_back();
+      saldos.pop_back();
+    }
+    else{
+      cpfs[it] = cpfs[it+1];
+      nomes[it] = nomes[it+1];
+      telefones[it] = telefones[it+1];
+      enderecos[it] = enderecos[it+1];
+      saldos[it] = saldos[it+1];
+    }
+  }
 
+  cout << "Conta deletada com sucesso." << endl;
+  cout << cpfs.size() << " " << cpfs[0] << endl;
+  
 }
 
 void menuOperacoes(int op, int pos){
