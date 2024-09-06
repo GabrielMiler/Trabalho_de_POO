@@ -29,8 +29,9 @@ int selectOperacao(){
   cout << "1. Saque" << endl;
   cout << "2. Deposito" << endl;
   cout << "3. Editar Informações" << endl;
-  cout << "4. Deletar Conta" << endl;
-  cout << "5. Sair" << endl;
+  cout << "4. Verificar Informações" << endl;
+  cout << "5. Deletar Conta" << endl;
+  cout << "6. Sair" << endl;
 
   cin >> op;
   
@@ -108,8 +109,36 @@ void depositar(int index){
   
 }
 
-void editar(int i){
-  
+void editar(int pos){
+  int op;
+  cin.ignore();
+
+  cout << "Selecione a informação que gostaria de editar: " << endl;
+  cout << "1. Telefone" << endl;
+  cout << "2. Endereço" << endl;
+  cin >> op;
+
+  if (op == 1){
+    cout << "Digite o novo telefone: " << endl;
+    cin >> telefones[pos];
+  }
+  else if (op == 2){
+    cout << "Digite o novo endereço: " << endl;
+    cin >> enderecos[pos];
+  }
+  else{
+    cout << "Operação não encontrada" << endl;
+  }
+}
+
+void lerInfo(int i){
+  cout << "Suas informações atuais: " << endl;
+  cout << "1. Nome" << nomes[i] << endl;
+  cout << "2. CPF" << cpfs[i] <<  endl;
+  cout << "3. Telefone" << telefones[i] << endl;
+  cout << "4. Endereço" << enderecos[i] << endl;
+  cout << "5. Saldo" << saldos[i] << endl;
+  cout << "++++++++++++++++++++++" << endl;
 }
 
 void deletarConta(int i){
@@ -127,9 +156,12 @@ void menuOperacoes(int op, int pos){
     editar(pos);
   }
   else if (op == 4){
-    deletarConta(pos);
+    lerInfo(pos);
   }
   else if (op == 5){
+    deletarConta(pos);
+  }
+  else if (op == 6){
     cout << "Saindo da conta." << endl;
   }
   else {
@@ -149,7 +181,6 @@ int main() {
     else if (menu == 2){
       posicao = acessarConta();
       if (posicao >= 0){
-        cout << posicao << endl;
         operacao = selectOperacao();
         menuOperacoes(operacao, posicao);
       }
