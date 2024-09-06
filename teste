@@ -54,7 +54,7 @@ void cadastrar(){
   cout <<"Insira aqui seu endereço: " << endl;
   getline(cin, endereco);
   enderecos.push_back(endereco);
-
+  saldos.push_back(0);
 }
 
 int acessarConta(){
@@ -81,6 +81,7 @@ int acessarConta(){
 
 void sacar(int index){
   double valor_retirado;
+  cin.ignore();
   
   cout << "Quanto gostaria de sacar? ";
   cin >> valor_retirado;
@@ -96,6 +97,7 @@ void sacar(int index){
 
 void depositar(int index){
   double valor_depositado;
+  cin.ignore();
   
   cout << "Quanto gostaria de depositar? ";
   cin >> valor_depositado;
@@ -147,6 +149,7 @@ int main() {
     else if (menu == 2){
       posicao = acessarConta();
       if (posicao >= 0){
+        cout << posicao << endl;
         operacao = selectOperacao();
         menuOperacoes(operacao, posicao);
       }
