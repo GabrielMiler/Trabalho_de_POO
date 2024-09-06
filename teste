@@ -1,0 +1,21 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+void cadastro(){
+    string nome,endereco, cpf, telefone;
+    cout << "Informações de cadastro"<< endl;
+    cout << "Insira aqui seu nome: ";
+    cin >> nome;
+    cout << "Insira aqui seu cpf: " << endl;
+    cin >> cpf; 
+    cout <<"Insira aqui seu telefone: "  << endl;
+    cin >> telefone;
+    cout <<"Insira aqui seu endereço: " << endl;
+    cin >> endereco;
+    return 1;
+}
+int main() 
+{
+    
+    return 0;
+}
