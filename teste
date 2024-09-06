@@ -1,20 +1,74 @@
 #include <iostream>
+#include <cmath>
 #include <vector>
+#include <string>
+#define TAM 1000
 using namespace std;
-void cadastro(){
-    string nome,endereco, cpf, telefone;
-    cout << "Informações de cadastro"<< endl;
-    cout << "Insira aqui seu nome: ";
-    cin >> nome;
-    cout << "Insira aqui seu cpf: ";
-    cin >> cpf; 
-    cout <<"Insira aqui seu telefone: ";
-    cin >> telefone;
-    cout <<"Insira aqui seu endereço: ";
-    cin >> endereco;
+
+vector<string> cpfs;
+vector<string> nomes;
+vector<string> enderecos;
+vector<double> saldos;
+vector<string> telefones;
+
+int showMenu(){
+  int op;
+  
+  cout << "1. Cadastro" << endl;
+  cout << "2. Acessar a conta" << endl;
+  cout << "3. Sair" << endl;
+
+  cin >> op;
+  return op;
 }
-int main() 
-{
-    cadastro();
-    return 0;
+
+int selectOperacao(){
+  int op;
+
+  cout << "1. Saque" << endl;
+  cout << "2. Deposito" << endl;
+  cout << "3. Sair" << endl;
+
+  cin >> op;
+  return op;
+}
+
+void cadastrar(){
+  string nome,endereco, cpf, telefone;
+  
+  cout << "Informações de cadastro"<< endl;
+  cout << "Insira aqui seu nome: ";
+  cin >> nome;
+  nomes.push_back(nome);
+  cout << "Insira aqui seu cpf: " << endl;
+  cin >> cpf; 
+  cpfs.push_back(cpf);
+  cout <<"Insira aqui seu telefone: "  << endl;
+  cin >> telefone;
+  telefones.push_back(telefone);
+  cout <<"Insira aqui seu endereço: " << endl;
+  cin >> endereco;
+  enderecos.push_back(endereco);
+}
+
+int main() { 
+  int menu, operacao;
+  
+  while (true){
+    menu = showMenu();
+    
+    if (menu == 1){
+      cadastrar();
+    }
+    else if (menu == 2){
+      operacao = selectOperacao();
+      cout << operacao;
+    }
+    else if (menu == 3){
+      break;
+    }
+  }
+  
+  
+  return 0;
 }
