@@ -6,16 +6,15 @@ void cadastro(){
     cout << "Informações de cadastro"<< endl;
     cout << "Insira aqui seu nome: ";
     cin >> nome;
-    cout << "Insira aqui seu cpf: " << endl;
+    cout << "Insira aqui seu cpf: ";
     cin >> cpf; 
-    cout <<"Insira aqui seu telefone: "  << endl;
+    cout <<"Insira aqui seu telefone: ";
     cin >> telefone;
-    cout <<"Insira aqui seu endereço: " << endl;
+    cout <<"Insira aqui seu endereço: ";
     cin >> endereco;
-    return 1;
 }
 int main() 
 {
-    
+    cadastro();
     return 0;
 }
